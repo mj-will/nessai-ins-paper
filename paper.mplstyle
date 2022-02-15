@@ -1,0 +1,15 @@
+figure.dpi : 300
+figure.figsize : 3.385826771653543, 2.0925560249012185
+
+font.family        : serif
+font.serif         : Times, Palatino, New Century Schoolbook, Bookman, Computer Modern Roman
+font.sans-serif    : Helvetica, Avant Garde, Computer Modern Sans Serif
+font.cursive       : Zapf Chancery
+font.monospace     : Courier, Computer Modern Typewriter
+
+text.usetex        : true
+
+axes.labelsize : 10
+xtick.labelsize : 10
+ytick.labelsize : 10
+legend.fontsize : 10

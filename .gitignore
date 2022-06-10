@@ -127,3 +127,25 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Condor files
+*.err
+*.log
+*.out
+*.condor*
+*.submit*
+
+# nessai
+*.pt
+*.pt.old
+*.pkl
+*.pkl.old
+config.json
+flow_config.json
+
+# Bilby pipe
+*.pickle
+
+# Images
+*.png
+*.pdf

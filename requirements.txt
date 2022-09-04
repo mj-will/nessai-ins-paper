@@ -1,0 +1,12 @@
+bilby[gw]
+bilby_pipe
+matplotlib
+nessai>=0.6.0
+git+https://github.com/igr-ml/nessai-models.git
+numpy
+pandas
+pycondor
+scipy
+seaborn
+torch
+tqdm

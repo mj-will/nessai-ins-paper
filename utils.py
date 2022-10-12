@@ -274,8 +274,10 @@ def get_sampler(
     for k, v in kwargs.items():
         fixed_kwargs[k] = from_string(v)
 
-    importance_sampler = config.getboolean("General", "importance_sampler")
-    logger.info(f"Importance sampler: {importance_sampler}")
+    importance_nested_sampler = config.getboolean(
+        "General", "importance_nested_sampler"
+    )
+    logger.info(f"Importance sampler: {importance_nested_sampler}")
     logger.info(f"Kwargs for sampler: \n {fixed_kwargs}")
     flow_config = get_flow_config(config)
     logger.info(f"Flow config: \n {flow_config}")
@@ -285,7 +287,7 @@ def get_sampler(
         model,
         resume=config.getboolean("General", "resume", fallback=False),
         output=output,
-        importance_sampler=importance_sampler,
+        importance_nested_sampler=importance_nested_sampler,
         flow_config=flow_config,
         seed=config.getint(
             "General", "seed", fallback=np.random.randint(0, 1e4)
@@ -378,7 +380,7 @@ def run_sampler(
 
     if summary:
         d = dict()
-        if config.getboolean("General", "importance_sampler") is True:
+        if config.getboolean("General", "importance_nested_sampler") is True:
             d["final_log_evidence"] = sampler.ns.final_state.log_evidence
             d[
                 "final_log_evidence_error"

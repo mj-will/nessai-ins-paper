@@ -4,3 +4,6 @@
 [submodule "bilby"]
 	path = bilby
 	url = git@git.ligo.org:michael.williams/bilby.git
+[submodule "glasflow"]
+	path = glasflow
+	url = git@github.com:igr-ml/glasflow.git

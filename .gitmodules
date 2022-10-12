@@ -1,0 +1,6 @@
+[submodule "nessai"]
+	path = nessai
+	url = git@github.com:mj-will/nessai.git
+[submodule "bilby"]
+	path = bilby
+	url = git@git.ligo.org:michael.williams/bilby.git

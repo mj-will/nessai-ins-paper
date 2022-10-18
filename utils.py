@@ -12,6 +12,7 @@ import re
 import shutil
 from typing import Any, Callable, Optional, Tuple
 
+import matplotlib.pyplot as plt
 import nessai
 from nessai.flowsampler import FlowSampler
 from nessai.flowmodel import update_config
@@ -26,6 +27,7 @@ from nessai_models import (
 )
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import torch
 import tqdm
 
@@ -61,6 +63,13 @@ def configure_logger(level="INFO"):
     )
     stream_handler.setLevel("INFO")
     logger.addHandler(stream_handler)
+
+
+def configure_plotting(base_dir) -> None:
+    """Configure the plotting defaults"""
+    sns.set_style("ticks")
+    sns.set_palette("colorblind")
+    plt.style.use(os.path.join(base_dir, "paper.mplstyle"))
 
 
 def natural_sort(values):

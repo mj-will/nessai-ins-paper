@@ -374,7 +374,7 @@ def run_sampler(
     setup_logger(output=output, log_level=log_level)
     model = get_model(config)
     sampler = get_sampler(model, output, config)
-    sampler.run(plot=plot, save=True)
+    sampler.run(plot=plot, save=save)
 
     if hasattr(model, "truth"):
         logger.info(f"True log-evidence: {model.truth}")

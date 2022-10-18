@@ -371,6 +371,8 @@ def run_sampler(
     if seed:
         config["General"]["seed"] = str(seed)
 
+    save = config.getboolean("General", "save", fallback=True)
+
     setup_logger(output=output, log_level=log_level)
     model = get_model(config)
     sampler = get_sampler(model, output, config)

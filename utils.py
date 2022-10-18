@@ -350,9 +350,10 @@ def save_summary(
     summary["log_evidence_error"] = sampler.ns.log_evidence_error
     summary["sampling_time"] = sampler.ns.sampling_time.total_seconds()
     summary["likelihood_evaluations"] = sampler.ns.model.likelihood_evaluations
+    summary["ess"] = sampler.ns.posterior_effective_sample_size
 
     with open(filename, "w") as fp:
-        json.dump(summary, fp, cls=NessaiJSONEncoder)
+        json.dump(summary, fp, cls=NessaiJSONEncoder, indent=4)
 
 
 def run_sampler(

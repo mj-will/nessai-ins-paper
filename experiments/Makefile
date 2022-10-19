@@ -51,6 +51,8 @@ rosenbrock :
 .PHONY : ins
 ins: gaussian gmm rosenbrock
 
+.PHONY : baselines
+baselines : baseline_gaussian baseline_gmm baseline_rosenbrock
 
 .PHONY : nlive_comparison
 nlive_comparison :

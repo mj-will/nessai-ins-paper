@@ -51,6 +51,13 @@ rosenbrock :
 .PHONY : ins
 ins: gaussian gmm rosenbrock
 
+
+.PHONY : nlive_comparison
+nlive_comparison :
+	python submit_nlive_comparison.py --config=nlive_comparison.ini \
+	-n $(N_NLIVE) --nlive $(NLIVE) --output=$(OUTDIR) --name=ins_nlive \
+	-e=run_experiment.py
+
 ..PHONY : clean_baselines
 clean_baselines :
 	rm -r $(OUTDIR)/baseline*

@@ -12,7 +12,11 @@ sys.path.append("../")
 from utils import configure_logger, logger  # noqa: E402
 
 
-EXTRA_LINES = ["checkpoint_exit_code=130", "max_retries=5"]
+EXTRA_LINES = [
+    "checkpoint_exit_code=130",
+    "max_retries=5",
+    "accounting_group=ligo.dev.o4.cbc.pe.bilby",
+]
 
 
 def parse_args() -> argparse.ArgumentParser:

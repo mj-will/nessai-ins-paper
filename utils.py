@@ -5,7 +5,6 @@ import argparse
 from ast import literal_eval
 import configparser
 import glob
-import json
 import logging
 import os
 import re
@@ -30,6 +29,12 @@ import pandas as pd
 import seaborn as sns
 import torch
 import tqdm
+
+try:
+    import ujson as json
+except ImportError:
+    print("Could not import ujson, falling back to json")
+    import json
 
 
 logger = logging.getLogger("ins-experiment")
@@ -84,7 +89,7 @@ def natural_sort(values):
     return sorted(values, key=alphanum_key)
 
 
-def find_results_files(path, file="result.json"):
+def find_results_files(path, file="summary.json"):
     """Find all of the results files"""
     p = path + "/**/" + file
     logger.info(f"Searching for: {p}")
@@ -98,13 +103,30 @@ def load_results(results_files):
     data = []
     for i, rf in tqdm.tqdm(enumerate(results_files)):
         try:
-            with open(rf, "r") as f:
-                d = json.load(f)
+            d = load_json(rf)
             data.append(d)
         except json.JSONDecodeError:
             print(f"Skipping: {rf}")
     df = pd.DataFrame(data)
     return df
+
+
+def load_all_results(path: str, **kwargs) -> dict:
+    """Load all the results files in a path.
+    
+    Searches for directories that match the pattern `\d+d`.
+    """
+    runs = natural_sort(glob.glob(path))
+    regex = re.compile(r'\d+d')
+    dims = [int(regex.findall(p)[-1][:-1]) for p in runs]
+    res = {}
+    for d, p in zip(dims, runs):
+        r = load_results(find_results_files(p, **kwargs))
+        if r.empty:
+            print(f'Skipping for {d}, {p}')
+        else:
+            res[d] = r
+    return res
 
 
 def load_json(filename: str) -> dict:
@@ -362,7 +384,7 @@ def save_summary(
     summary["ess"] = sampler.ns.posterior_effective_sample_size
 
     with open(filename, "w") as fp:
-        json.dump(summary, fp, cls=NessaiJSONEncoder, indent=4)
+        json.dump(summary, fp, indent=4)
 
 
 def run_sampler(

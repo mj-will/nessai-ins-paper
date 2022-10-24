@@ -20,3 +20,7 @@ repos:
     rev: v2.1.0
     hooks:
     -   id: codespell
+- repo: https://github.com/kynan/nbstripout
+  rev: 0.6.0
+  hooks:
+    - id: nbstripout

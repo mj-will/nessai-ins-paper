@@ -16,4 +16,3 @@ psi =  Uniform(name='psi', minimum=0, maximum=np.pi)
 phase =  Uniform(name='phase', minimum=0, maximum=2 * np.pi)
 lambda_1 = Uniform(name='lambda_1', minimum=0, maximum=500)
 lambda_2 = Uniform(name='lambda_2', minimum=0, maximum=1500)
-

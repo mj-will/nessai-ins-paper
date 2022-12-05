@@ -35,6 +35,9 @@ n_pool_16: parallelisation_injection.json
 	bilby_pipe n_pool_16.ini --submit
 	bilby_pipe n_pool_16_baseline.ini --submit
 
+plot:
+	jupyter nbconvert --execute parallelisation.ipynb --to notebook --inplace
+
 clean:
 	rm -r n_pool_1*
 	rm -r n_pool_2*

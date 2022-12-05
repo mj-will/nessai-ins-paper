@@ -1,3 +1,4 @@
 n_pool*.ini
 n_pool*/
 *.npz
+parallelisation_injection.json

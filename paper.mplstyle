@@ -1,5 +1,7 @@
 figure.dpi : 300
-figure.figsize : 3.385826771653543, 2.0925560249012185
+# Indented linewidth for IOP template
+figure.figsize : 5.18158, 3.202392555
+savefig.bbox   : tight
 
 font.family        : serif
 font.serif         : Computer Modern
@@ -8,13 +10,32 @@ font.cursive       : Zapf Chancery
 font.monospace     : Courier, Computer Modern Typewriter
 font.size          : 10
 
-text.usetex        : True
+text.usetex         : True
+text.latex.preamble : \usepackage{amsmath} \usepackage{amssymb}
 
 mathtext.fontset   : cm
 
 axes.labelsize  : 10
 xtick.labelsize : 10
 ytick.labelsize : 10
+
 legend.fontsize : 10
+legend.frameon : False
+
+xtick.direction : in
+xtick.major.size : 3
+xtick.major.width : 0.5
+xtick.minor.size : 1.5
+xtick.minor.width : 0.5
+xtick.minor.visible : True
+xtick.top : True
+
+ytick.direction : in
+ytick.major.size : 3
+ytick.major.width : 0.5
+ytick.minor.size : 1.5
+ytick.minor.width : 0.5
+ytick.minor.visible : True
+ytick.right : True
 
 errorbar.capsize : 3.0

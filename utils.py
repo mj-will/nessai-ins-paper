@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import nessai
 from nessai.flowsampler import FlowSampler
 from nessai.flowmodel import update_config
-from nessai.utils import setup_logger, NessaiJSONEncoder
+from nessai.utils import setup_logger
 from nessai_models import (
     Gaussian,
     Rosenbrock,
@@ -112,18 +112,18 @@ def load_results(results_files):
 
 
 def load_all_results(path: str, **kwargs) -> dict:
-    """Load all the results files in a path.
-    
-    Searches for directories that match the pattern `\d+d`.
+    r"""Load all the results files in a path.
+
+    Searches for directories that match the pattern `"\d+d"`.
     """
     runs = natural_sort(glob.glob(path))
-    regex = re.compile(r'\d+d')
+    regex = re.compile(r"\d+d")
     dims = [int(regex.findall(p)[-1][:-1]) for p in runs]
     res = {}
     for d, p in zip(dims, runs):
         r = load_results(find_results_files(p, **kwargs))
         if r.empty:
-            print(f'Skipping for {d}, {p}')
+            print(f"Skipping for {d}, {p}")
         else:
             res[d] = r
     return res
@@ -382,6 +382,9 @@ def save_summary(
     summary["sampling_time"] = sampler.ns.sampling_time.total_seconds()
     summary["likelihood_evaluations"] = sampler.ns.model.likelihood_evaluations
     summary["ess"] = sampler.ns.posterior_effective_sample_size
+
+    if not sampler.importance_nested_sampler:
+        summary["p_value"] = sampler.ns.final_p_value
 
     with open(filename, "w") as fp:
         json.dump(summary, fp, indent=4)

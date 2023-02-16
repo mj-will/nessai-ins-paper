@@ -8,18 +8,21 @@ ANALYTIC_MODELS = gaussian gmm_paper
 .PHONY : baseline_gaussian
 baseline_gaussian:
 	python submit_runs.py --name=baseline -e=$(EXE) -n=$(N) \
-		--config=baseline_gaussian.ini --output=$(OUTDIR) --dims $(DIMS)
+		--config=baseline_gaussian.ini --output=$(OUTDIR) --dims $(DIMS) \
+		--seed=$(SEED)
 
 .PHONY : baseline_gmm
 baseline_gmm:
 	python submit_runs.py --name=baseline -e=$(EXE) -n=$(N) \
-		--config=baseline_gmm.ini --output=$(OUTDIR) --dims $(DIMS)
+		--config=baseline_gmm.ini --output=$(OUTDIR) --dims $(DIMS) \
+		--seed=$(SEED)
 
 .PHONY : baseline_rosenbrock
 baseline_rosenbrock:
 	python submit_runs.py --name=baseline -e=$(EXE) -n=$(N_ROSENBROCK) \
 		--config=baseline_rosenbrock.ini --output=$(OUTDIR) \
-		--dims $(ROSENBROCK_DIMS)
+		--dims $(ROSENBROCK_DIMS) \
+		--seed=$(SEED)
 
 .PHONY : baselines
 baselines : baseline_gaussian baseline_gmm baseline_rosenbrock
@@ -36,17 +39,20 @@ check_baselines :
 .PHONY : gaussian
 gaussian :
 	python submit_runs.py --name=ins -e=run_experiment.py -n=$(N) \
-	--config=gaussian.ini --output=$(OUTDIR) --dims $(DIMS)
+	--config=gaussian.ini --output=$(OUTDIR) --dims $(DIMS) \
+	--seed=$(SEED)
 
 .PHONY : gmm
 gmm :
 	python submit_runs.py --name=ins -e=run_experiment.py -n=$(N) \
-	--config=gmm.ini --output=$(OUTDIR) --dims $(DIMS)
+	--config=gmm.ini --output=$(OUTDIR) --dims $(DIMS) \
+	--seed=$(SEED)
 
 .PHONY : rosenbrock
 rosenbrock :
 	python submit_runs.py --name=ins -e=run_experiment.py -n=$(N_ROSENBROCK) \
-	--config=rosenbrock.ini --output=$(OUTDIR) --dims $(ROSENBROCK_DIMS)
+	--config=rosenbrock.ini --output=$(OUTDIR) --dims $(ROSENBROCK_DIMS) \
+	--seed=$(SEED)
 
 .PHONY : ins
 ins: gaussian gmm rosenbrock
@@ -58,7 +64,7 @@ baselines : baseline_gaussian baseline_gmm baseline_rosenbrock
 nlive_comparison :
 	python submit_nlive_comparison.py --config=nlive_comparison.ini \
 	-n $(N_NLIVE) --nlive $(NLIVE) --output=$(OUTDIR) --name=ins_nlive \
-	-e=run_experiment.py
+	-e=run_experiment.py --seed=$(SEED)
 
 ..PHONY : clean_baselines
 clean_baselines :

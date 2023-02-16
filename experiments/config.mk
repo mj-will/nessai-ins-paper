@@ -1,5 +1,7 @@
 # General config
 OUTDIR=outdir/
+# Random seed
+SEED=1234
 # Analytic likelihoods config
 DIMS=2 4 8 16 32
 N=50

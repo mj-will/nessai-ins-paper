@@ -29,6 +29,7 @@ def parse_args() -> argparse.ArgumentParser:
     )
     parser.add_argument("--config", type=str, help="Config")
     parser.add_argument("--dims", type=int, nargs="+")
+    parser.add_argument("--seed", type=int, default=1234)
     return parser.parse_args()
 
 
@@ -57,7 +58,9 @@ def get_dag(output, args, config_path):
             request_cpus=1,
             extra_lines=extra_lines,
         )
-        job.add_arg(f"--config={config_path} --tag={tag} --seed={i}")
+        job.add_arg(
+            f"--config={config_path} --tag={tag} --seed={args.seed + i}"
+        )
         dag.add_job(job)
     return dag
 

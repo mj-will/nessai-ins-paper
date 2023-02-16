@@ -27,6 +27,7 @@ def parse_args() -> argparse.ArgumentParser:
     )
     parser.add_argument("--config", type=str, help="Config")
     parser.add_argument("--nlive", type=int, nargs="+")
+    parser.add_argument("--seed", type=int, default=1234)
     return parser.parse_args()
 
 

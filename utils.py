@@ -176,7 +176,7 @@ def get_config(config_file: str) -> configparser.ConfigParser:
     if config.getboolean("General", "use_float64", fallback=False):
         torch.set_default_dtype(torch.float64)
     if eps := config.getfloat("General", "eps", fallback=None):
-        nessai.config.eps = eps
+        nessai.config.EPS = eps
     return config
 
 
@@ -431,7 +431,8 @@ def run_basic_experiment():
     args = parse_args()
     logger.info(f"Setting random seed to: {args.seed}")
     if args.seed:
-        seed = np.random.seed(args.seed)
+        seed = args.seed
+        np.random.seed(seed)
     else:
         seed = None
     if hasattr(args, "tag"):

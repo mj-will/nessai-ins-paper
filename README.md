@@ -1,5 +1,7 @@
 # Importance nested sampling with normalising flows
 
+[![arXiv](https://img.shields.io/badge/arXiv-2302.08526-b31b1b.svg)](https://arxiv.org/abs/2302.08526)
+
 This repository contains code to accompany the paper Importance nested sampling with normalising flows.
 
 ## Installation

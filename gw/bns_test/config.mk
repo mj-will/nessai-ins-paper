@@ -1,4 +1,4 @@
 # Directories to use for producing results
 NESSAI_OUTDIR=outdir_nessai_A
-INESSAI_OUTDIR=outdir_inessai_P
+INESSAI_OUTDIR=outdir_inessai_rerun_C
 DYNESTY_OUTDIR=outdir_dynesty_2000

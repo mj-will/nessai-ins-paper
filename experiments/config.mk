@@ -1,5 +1,5 @@
 # General config
-OUTDIR=outdir/
+OUTDIR=outdir_rerun/
 # Random seed
 SEED=1234
 # Analytic likelihoods config

@@ -93,7 +93,7 @@ def find_results_files(path, file="summary.json"):
     """Find all of the results files"""
     p = path + "/**/" + file
     logger.info(f"Searching for: {p}")
-    files = glob.glob(p, recursive=True)
+    files = natural_sort(glob.glob(p, recursive=True))
     logger.info(f"Found {len(files)} results files")
     return files
 
